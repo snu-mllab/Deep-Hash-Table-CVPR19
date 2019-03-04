@@ -4,11 +4,11 @@ This repository has the source code for the paper "End-to-End Efficient Represen
 ## Citing this work
 ```
 @inproceedings{jeongCVPR19,
-	title= {End-to-End Efficient Representation Learning via Cascading Combinatorial Optimization},
+    title= {End-to-End Efficient Representation Learning via Cascading Combinatorial Optimization},
     author={Jeong, Yeonwoo and Kim, Yoonsung and Song, Hyun Oh},
-	booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+    booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
     year={2019}
-    }
+}
 ```
 
 ## Installation
@@ -19,7 +19,7 @@ Check [https://github.com/tensorflow/tensorflow/tree/r1.4](https://github.com/te
 Check [https://developers.google.com/optimization/introduction/download](https://developers.google.com/optimization/introduction/download)
 
 ## Prerequisites
-1. Generate directory and change path(ROOT) in **configs/path.py**
+1. Generate directory and change path(=*ROOT*)  in **configs/path.py**
 ```
 ROOT = '(user enter path)'
 ``` 
@@ -31,7 +31,7 @@ mkdir cifar_processed
 
 2. Download and unzip dataset Cifar-100
 ```
-cd RROOT/dataset
+cd (ROOT)
 wget https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz
 tar zxvf cifar-100-python.tar.gz
 ```
