@@ -1,5 +1,3 @@
-from tqdm import tqdm
-
 import tensorflow as tf
 import numpy as np
 np.set_printoptions(threshold=np.nan)
@@ -258,7 +256,7 @@ def activate_k_2D(arr, k, session=None, batch_size=100):
             arr = np.concatenate([arr, np.zeros([batch_size-ndata%batch_size, nfeature])], axis=0) 
         nbatch=len(arr)//batch_size
         arr_k_active = list()
-        for b in tqdm(range(nbatch), ascii=True, desc="batch"):
+        for b in range(nbatch):
             feed_dict = {inputs : arr[b*batch_size:(b+1)*batch_size]}
             arr_k_active.append(session.run(k_hash_tensor, feed_dict=feed_dict))
         arr_k_active = np.concatenate(arr_k_active, axis=0)
@@ -298,7 +296,7 @@ def pairwise_distance_euclid_np(components, identity=0):
     dist_matrix = np.zeros([ndata, ndata])
 
     if ndata>1000:
-        for i in tqdm(range(ndata), ascii=True, desc="idx"):
+        for i in range(ndata):
             for j in range(i, ndata):
                 dist_matrix[i][j] = np.sum(np.square(components[i]-components[j]))
                 dist_matrix[j][i] = dist_matrix[i][j]

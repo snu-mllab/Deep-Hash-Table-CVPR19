@@ -7,7 +7,7 @@ from configs.info import K_SET
 
 from utils.datasetmanager import cifar_manager
 from utils.format_op import FileIdManager
-from utils.writer_op import write_pkl
+from utils.writer_op import write_pkl, create_muldir
 from utils.shutil_op import remove_dir, copy_dir
 from utils.reader_op import read_pkl
 from utils.csv_op import write_dict_csv
@@ -42,7 +42,7 @@ def train_model():
     model.set_up_train()
     try:
         model.restore(save_dir=SAVE_SUBDIR)
-    except AttributeError:
+    except (AttributeError, TypeError):
         model.initialize()
         model.train(epoch=EPOCH, save_dir=SAVE_SUBDIR, board_dir=BOARD_SUBDIR)
         model.restore(save_dir=SAVE_SUBDIR)
@@ -57,11 +57,7 @@ def integrate_results_and_preprocess():
     FILE_KEY = 'evaluation.pkl'
     def get_value(path):
         content = read_pkl(path)
-        #value = content['te_te_precision_at_k'][0]
-        value = content['train_nmi']
-        if np.mean(content['te_te_suf'])<BOUNDARY:
-            return -1
-        return value 
+        return np.sum(content['te_te_precision_at_k'])
     max_value = -1
     max_file = None
     for file in sorted(os.listdir(PKL_DIR)):
@@ -73,7 +69,6 @@ def integrate_results_and_preprocess():
                 max_value=value
                 max_file = file
     # Get the best file id
-
     parser = local_cifar_parser()
     args = parser.parse_args() 
     fim = FileIdManager(ID_STRUCTURE)
@@ -95,7 +90,7 @@ def integrate_results_and_preprocess():
     BESTSAVE_DIR = RESULT_DIR+'bestsave/'
 
     # copy file 
-    remove_dir(BESTSAVE_DIR)
+    if os.path.isdir(BESTSAVE_DIR): remove_dir(BESTSAVE_DIR)
     copy_dir(SAVE_SUBDIR, BESTSAVE_DIR)
     # ======================================================#
     create_muldir(META_DIR)
@@ -113,4 +108,4 @@ def integrate_results_and_preprocess():
 
 if __name__ == '__main__':
     #train_model()
-    #integrate_results_and_preprocess()
+    integrate_results_and_preprocess()

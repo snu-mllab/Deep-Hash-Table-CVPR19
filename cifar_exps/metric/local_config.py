@@ -9,6 +9,7 @@ import numpy as np
 import argparse
 
 KEY = 'cifar_metric_npairs_64'
+#KEY = 'cifar_metric_triplet_256'
 RESULT_DIR = EXPDIR+"{}/".format(KEY)
 
 ID_STRUCTURE_DICT = {
@@ -23,7 +24,7 @@ def local_cifar_parser():
     parser.add_argument("--nsclass", default = 64, help="the number of selected class", type = int)
     parser.add_argument("--ltype", default = 'triplet', help="loss type", type = str)
     parser.add_argument("--dtype", default = 'stair', help="decay type", type = str)
-    parser.add_argument("--dptype", default = 'a5', help="hash decay param type", type = str)
+    parser.add_argument("--dptype", default = 'a6', help="hash decay param type", type = str)
     
     if KEY in ['cifar_metric_npairs_64']:
         parser.add_argument("--m", default = 64, help="continous representation size", type = int)

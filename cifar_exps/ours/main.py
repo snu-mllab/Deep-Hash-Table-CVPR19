@@ -43,7 +43,7 @@ def train_model():
     model.set_up_train_hash()
     try:
         model.restore(save_dir=SAVE_SUBDIR)
-    except AttributeError:
+    except (AttributeError, TypeError):
         model.initialize()
         model.train_hash(epoch=EPOCH, save_dir=SAVE_SUBDIR, board_dir=BOARD_SUBDIR)
         model.restore(save_dir=SAVE_SUBDIR)
@@ -72,10 +72,8 @@ def integrate_results():
     FILE_KEY = 'evaluation.pkl'
     def get_value(path):
         content = read_pkl(path)
-        #value = content['te_te_precision_at_k'][0]
-        value = content['train_nmi']
-        if np.mean(content['te_te_suf'])<BOUNDARY:
-            return -1
+        value = np.sum(content['te_te_precision_at_k'])
+        if np.mean(content['te_te_suf'])<BOUNDARY: return -1
         return value 
     max_value = -1
     max_path = None
@@ -93,6 +91,6 @@ def integrate_results():
     print(read_pkl(max_path))
 
 if __name__ == '__main__':
-    #train_model()
+    train_model()
     #integrate_results()
 

@@ -11,16 +11,12 @@ from tensorflow.python.ops import array_ops, control_flow_ops, logging_ops, math
 import tensorflow as tf
 import numpy as np
 
-from tqdm import tqdm
-
 def apply_tf_op(inputs, session, input_gate, output_gate, batch_size, dim=4, train_gate=None, crop_size=None):
     '''
     Requires the graph to be built alreadly
     Dependency:
         import tensorflow as tf
         import numpy as np
-        from tqdm import tqdm
-
     Args:
         inputs - 2-D vector [ndata, nfeature]
                  4-D image [ndata, height, width, nchannel]
@@ -45,7 +41,7 @@ def apply_tf_op(inputs, session, input_gate, output_gate, batch_size, dim=4, tra
     nbatch = len(inputs)//batch_size
 
     outputs = list()
-    for b in tqdm(range(nbatch), ascii = True, desc="batch"):
+    for b in range(nbatch):
         if crop_size is None:
             feed_dict = {input_gate : inputs[b*batch_size:(b+1)*batch_size]}
         else:
@@ -132,7 +128,7 @@ def get_recall_at_1_efficient(data, label, input1_tensor, input2_tensor, idx_ten
     nbatch = len(inputs)//batch_size
 
     outputs = np.zeros([len(inputs), 2])
-    for b in tqdm(range(nbatch), ascii = True, desc="batch"):
+    for b in range(nbatch):
         feed_dict = {
                     input1_tensor : inputs[b*batch_size:(b+1)*batch_size],\
                     input2_tensor : data
@@ -174,7 +170,7 @@ def get_recall_at_1_efficient_selective(embed_data, idx_data, label, embed_tenso
     nbatch = len(embed_inputs)//batch_size
 
     outputs = np.zeros([len(embed_inputs), 2])
-    for b in tqdm(range(nbatch), ascii = True, desc="batch"):
+    for b in range(nbatch):
         feed_dict = {
                     embed_tensor1 : embed_inputs[b*batch_size:(b+1)*batch_size],\
                     embed_tensor2 : embed_data,\
@@ -217,7 +213,7 @@ class HashDistanceManager:
         outputs2 = np.zeros([len(inputs), self.ndata], dtype=np.int32)
         feed_dict = dict()
         feed_dict[self.tensor2]=data
-        for b in tqdm(range(nbatch), ascii = True, desc="batch"):
+        for b in range(nbatch):
             feed_dict[self.tensor1] = inputs[b*self.batch_size:(b+1)*self.batch_size]
             outputs1[b*self.batch_size:(b+1)*self.batch_size]=session.run(self.p_dist, feed_dict=feed_dict)
             outputs2[b*self.batch_size:(b+1)*self.batch_size]=session.run(self.p_argsort, feed_dict=feed_dict)
@@ -242,7 +238,7 @@ class HashDistanceManager:
         outputs2 = np.zeros([len(inputs), self.ndata], dtype=np.int32)
         feed_dict = dict()
         feed_dict[self.tensor2]=data2
-        for b in tqdm(range(nbatch), ascii = True, desc="batch"):
+        for b in range(nbatch):
             feed_dict[self.tensor1] = inputs[b*self.batch_size:(b+1)*self.batch_size]
             outputs1[b*self.batch_size:(b+1)*self.batch_size]=session.run(self.p_dist, feed_dict=feed_dict)
             outputs2[b*self.batch_size:(b+1)*self.batch_size]=session.run(self.p_argsort, feed_dict=feed_dict)

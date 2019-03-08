@@ -8,7 +8,7 @@ from configs.path import EXPDIR
 import numpy as np
 import argparse
 
-KEY = 'cifar_ours_npairs_32_2_1'
+KEY = 'cifar_ours_triplet_64_2_1'
 RESULT_DIR = EXPDIR+"{}/".format(KEY)
 
 ID_STRUCTURE_DICT = {
@@ -31,13 +31,13 @@ def local_cifar_parser():
     parser.add_argument("--plamb1", default = 100.0, help="lambda for pairwise cost", type = float)
     parser.add_argument("--dtype", default = 'stair', help="decay type", type = str)
     parser.add_argument("--dptype", default = 'a5', help="hash decay param type", type = str)
-    parser.add_argument("--save", default='/home/maestro/deep_hash_tree_exp_results/icml_cifar_exps/metric/save/icml_cifar_conv1_npair_64/', type=str)
     
     if KEY in ['cifar_ours_npairs_32_2_1']:
         parser.add_argument("--d", default = 32, help="bucket d", type = int)
         parser.add_argument("--k", default = 2, help="number of hierachical", type = int)
         parser.add_argument("--sk", default = 1, help="sparse k", type = int)
         parser.add_argument("--meta", default=EXPDIR+'cifar_metric_npairs_64/meta/meta.pkl', type=str)
+        parser.add_argument("--save", default=EXPDIR+'cifar_metric_npairs_64/bestsave/', type=str)
         parser.add_argument("--ltype", default = 'npair', help="loss type", type = str)
         parser.add_argument("--param", default = 0.03, help="hash reg", type = float)
         parser.add_argument("--plamb2", default = 0.07, help="lambda for pairwise cost", type = float)
@@ -46,6 +46,7 @@ def local_cifar_parser():
         parser.add_argument("--k", default = 2, help="number of hierachical", type = int)
         parser.add_argument("--sk", default = 2, help="sparse k", type = int)
         parser.add_argument("--meta", default=EXPDIR+'cifar_metric_npairs_64/meta/meta.pkl', type=str)
+        parser.add_argument("--save", default=EXPDIR+'cifar_metric_npairs_64/bestsave/', type=str)
         parser.add_argument("--ltype", default = 'npair', help="loss type", type = str)
         parser.add_argument("--param", default = 0.01, help="hash reg", type = float)
         parser.add_argument("--plamb2", default = 0.1, help="lambda for pairwise cost", type = float)
@@ -54,6 +55,7 @@ def local_cifar_parser():
         parser.add_argument("--k", default = 2, help="number of hierachical", type = int)
         parser.add_argument("--sk", default = 3, help="sparse k", type = int)
         parser.add_argument("--meta", default=EXPDIR+'cifar_metric_npairs_64/meta/meta.pkl', type=str)
+        parser.add_argument("--save", default=EXPDIR+'cifar_metric_npairs_64/bestsave/', type=str)
         parser.add_argument("--ltype", default = 'npair', help="loss type", type = str)
         parser.add_argument("--param", default = 0.003, help="hash reg", type = float)
         parser.add_argument("--plamb2", default = 0.1, help="lambda for pairwise cost", type = float)
@@ -62,6 +64,7 @@ def local_cifar_parser():
         parser.add_argument("--k", default = 2, help="number of hierachical", type = int)
         parser.add_argument("--sk", default = 4, help="sparse k", type = int)
         parser.add_argument("--meta", default=EXPDIR+'cifar_metric_npairs_64/meta/meta.pkl', type=str)
+        parser.add_argument("--save", default=EXPDIR+'cifar_metric_npairs_64/bestsave/', type=str)
         parser.add_argument("--ltype", default = 'npair', help="loss type", type = str)
         parser.add_argument("--param", default = 0.001, help="hash reg", type = float)
         parser.add_argument("--plamb2", default = 0.1, help="lambda for pairwise cost", type = float)
@@ -70,6 +73,7 @@ def local_cifar_parser():
         parser.add_argument("--k", default = 2, help="number of hierachical", type = int)
         parser.add_argument("--sk", default = 1, help="sparse k", type = int)
         parser.add_argument("--meta", default=EXPDIR+'cifar_metric_triplet_256/meta/meta.pkl', type=str)
+        parser.add_argument("--save", default=EXPDIR+'cifar_metric_triplet_256/bestsave/', type=str)
         parser.add_argument("--ltype", default = 'triplet', help="loss type", type = str)
         parser.add_argument("--param", default = 0.5, help="hash margin alpha", type = float)
         parser.add_argument("--plamb2", default = 1.0, help="lambda for pairwise cost", type = float)
@@ -78,6 +82,7 @@ def local_cifar_parser():
         parser.add_argument("--k", default = 2, help="number of hierachical", type = int)
         parser.add_argument("--sk", default = 2, help="sparse k", type = int)
         parser.add_argument("--meta", default=EXPDIR+'cifar_metric_triplet_256/meta/meta.pkl', type=str)
+        parser.add_argument("--save", default=EXPDIR+'cifar_metric_triplet_256/bestsave/', type=str)
         parser.add_argument("--ltype", default = 'triplet', help="loss type", type = str)
         parser.add_argument("--param", default = 0.3, help="hash margin alpha", type = float)
         parser.add_argument("--plamb2", default = 1.0, help="lambda for pairwise cost", type = float)
@@ -86,6 +91,7 @@ def local_cifar_parser():
         parser.add_argument("--k", default = 2, help="number of hierachical", type = int)
         parser.add_argument("--sk", default = 3, help="sparse k", type = int)
         parser.add_argument("--meta", default=EXPDIR+'cifar_metric_triplet_256/meta/meta.pkl', type=str)
+        parser.add_argument("--save", default=EXPDIR+'cifar_metric_triplet_256/bestsave/', type=str)
         parser.add_argument("--ltype", default = 'triplet', help="loss type", type = str)
         parser.add_argument("--param", default = 0.5, help="hash margin alpha", type = float)
         parser.add_argument("--plamb2", default = 1.0, help="lambda for pairwise cost", type = float)
@@ -94,6 +100,7 @@ def local_cifar_parser():
         parser.add_argument("--k", default = 2, help="number of hierachical", type = int)
         parser.add_argument("--sk", default = 4, help="sparse k", type = int)
         parser.add_argument("--meta", default=EXPDIR+'cifar_metric_triplet_256/meta/meta.pkl', type=str)
+        parser.add_argument("--save", default=EXPDIR+'cifar_metric_triplet_256/bestsave/', type=str)
         parser.add_argument("--ltype", default = 'triplet', help="loss type", type = str)
         parser.add_argument("--param", default = 0.5, help="hash margin alpha", type = float)
         parser.add_argument("--plamb2", default = 1.0, help="lambda for pairwise cost", type = float)

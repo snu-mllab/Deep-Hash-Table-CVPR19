@@ -6,7 +6,6 @@ from utils.general_class import ModelPlugin
 from utils.evaluation import evaluate_hashtree_te_tr_sparsity
 from utils.ortools_op import solve_maxmatching_soft_intraclass_multiselect, SolveMaxMatching
 from utils.eval_op import get_nmi_suf_quick
-from utils.tqdm_op import tqdm_range
 from utils.np_op import activate_k_2D, plabel2subset, bws2label
 
 from tfops.transform_op import apply_tf_op
@@ -17,8 +16,6 @@ from tfops.train_op import get_multi_train_op
 from tfops.info_op import get_shape
 from tfops.lr_op import DECAY_DICT, DECAY_PARAMS_DICT
 from tfops.nets import conv1_32
-
-from tqdm import tqdm
 
 import tensorflow as tf
 slim = tf.contrib.slim
@@ -54,9 +51,11 @@ class Model(ModelPlugin):
         self.logger.info("Model building ends")
 
     def set_info(self, val_arg_sort, te_te_distance, te_tr_distance):
+        self.logger.info("Model setting info starts")
         self.val_arg_sort = val_arg_sort
         self.te_te_distance = te_te_distance
         self.te_tr_distance = te_tr_distance
+        self.logger.info("Model setting info ends")
     
     def build_hash(self): 
         self.logger.info("Model building train hash starts")
@@ -235,7 +234,7 @@ class Model(ModelPlugin):
         self.save(0, save_dir)
         for epoch_ in range(epoch):
             train_epoch_loss = 0
-            for _ in tqdm_range(self.nbatch_train):
+            for _ in range(self.nbatch_train):
                 batch_loss = self.run_batch_hash()
                 train_epoch_loss += batch_loss	
             train_epoch_loss /= self.nbatch_train

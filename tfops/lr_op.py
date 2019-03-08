@@ -55,40 +55,6 @@ DECAY_PARAMS_DICT =\
                 'a5' : {'initial_lr' : 1e-3, 'decay_steps' : 50000, 'decay_rate' : 0.3},
                 'a6' : {'initial_lr' : 3e-3, 'decay_steps' : 50000, 'decay_rate' : 0.3},
                 'a7' : {'initial_lr' : 1e-2, 'decay_steps' : 50000, 'decay_rate' : 0.3},
-                'b1':  {'initial_lr' : 1e-5, 'decay_steps' : 20000, 'decay_rate' : 0.3},
-                'b2' : {'initial_lr' : 3e-5, 'decay_steps' : 20000, 'decay_rate' : 0.3},
-                'b3' : {'initial_lr' : 1e-4, 'decay_steps' : 20000, 'decay_rate' : 0.3},
-                'b4' : {'initial_lr' : 3e-4, 'decay_steps' : 20000, 'decay_rate' : 0.3},
-                'b5' : {'initial_lr' : 1e-3, 'decay_steps' : 20000, 'decay_rate' : 0.3},
-                'b6' : {'initial_lr' : 3e-3, 'decay_steps' : 20000, 'decay_rate' : 0.3},
-                'b7' : {'initial_lr' : 1e-2, 'decay_steps' : 20000, 'decay_rate' : 0.3},
-                'c1':  {'initial_lr' : 1e-5, 'decay_steps' : 8000, 'decay_rate' : 0.3},
-                'c2' : {'initial_lr' : 3e-5, 'decay_steps' : 8000, 'decay_rate' : 0.3},
-                'c3' : {'initial_lr' : 1e-4, 'decay_steps' : 8000, 'decay_rate' : 0.3},
-                'c4' : {'initial_lr' : 3e-4, 'decay_steps' : 8000, 'decay_rate' : 0.3},
-                'c5' : {'initial_lr' : 1e-3, 'decay_steps' : 8000, 'decay_rate' : 0.3},
-                'c6' : {'initial_lr' : 3e-3, 'decay_steps' : 8000, 'decay_rate' : 0.3},
-                'c7' : {'initial_lr' : 1e-2, 'decay_steps' : 8000, 'decay_rate' : 0.3},
-                },
-            512 :
-                {
-                'a1' : {'initial_lr' : 1e-5, 'decay_steps' : 80000, 'decay_rate' : 0.3},
-                'a2' : {'initial_lr' : 3e-5, 'decay_steps' : 80000, 'decay_rate' : 0.3},
-                'a3' : {'initial_lr' : 1e-4, 'decay_steps' : 80000, 'decay_rate' : 0.3},
-                'a4' : {'initial_lr' : 3e-4, 'decay_steps' : 80000, 'decay_rate' : 0.3},
-                'a5' : {'initial_lr' : 1e-3, 'decay_steps' : 80000, 'decay_rate' : 0.3},
-                'a6' : {'initial_lr' : 3e-3, 'decay_steps' : 80000, 'decay_rate' : 0.3},
-                'a7' : {'initial_lr' : 1e-2, 'decay_steps' : 80000, 'decay_rate' : 0.3},
-                },
-            1024 :
-                {
-                'a1' : {'initial_lr' : 1e-5, 'decay_steps' : 50000, 'decay_rate' : 0.3},
-                'a2' : {'initial_lr' : 3e-5, 'decay_steps' : 50000, 'decay_rate' : 0.3},
-                'a3' : {'initial_lr' : 1e-4, 'decay_steps' : 50000, 'decay_rate' : 0.3},
-                'a4' : {'initial_lr' : 3e-4, 'decay_steps' : 50000, 'decay_rate' : 0.3},
-                'a5' : {'initial_lr' : 1e-3, 'decay_steps' : 50000, 'decay_rate' : 0.3},
-                'a6' : {'initial_lr' : 3e-3, 'decay_steps' : 50000, 'decay_rate' : 0.3},
-                'a7' : {'initial_lr' : 1e-2, 'decay_steps' : 50000, 'decay_rate' : 0.3},
                 }
         }
     }

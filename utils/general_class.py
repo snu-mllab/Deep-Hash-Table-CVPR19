@@ -3,7 +3,6 @@ import sys
 sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), '..'))
 
 from utils.logger_op import LoggerManager
-from utils.gpu_op import selectGpuById
 from tfops.init_op import rest_initializer
 
 import tensorflow as tf
@@ -13,7 +12,6 @@ class ModelPlugin:
     def __init__(self, train_dataset, val_dataset, test_dataset, logfilepath, args):
         self.args = args
 
-        selectGpuById(self.args.gpu)
         self.logfilepath = logfilepath
         self.logger = LoggerManager(self.logfilepath, __name__)
 

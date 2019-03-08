@@ -4,9 +4,9 @@ sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), '../..'
 from utils.writer_op import create_muldir, create_dir
 
 #=============================PATH==========================================#
-ROOT = '/data/unsynced_store/maestro/dht_github/' # User define
+ROOT = '/home/maestro/dht_github_storage/' # User define
 #=============================INITIAL DOWNLOAD==============================#
-CIFAR100PATH = ROOT+'cifar-100-python/
+CIFAR100PATH = ROOT+'cifar-100-python/'
 #============================EXPRESULTS=====================================#
 EXPDIR = ROOT+'exp_results/'
 #=============================DATASET======================================#

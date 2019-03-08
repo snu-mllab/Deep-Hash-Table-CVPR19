@@ -6,8 +6,6 @@ from utils.general_class import ModelPlugin
 from utils.evaluation import evaluate_metric_te_tr
 from utils.sklearn_op import KMeansClustering
 from utils.logger_op import LoggerManager
-from utils.gpu_op import selectGpuById
-from utils.tqdm_op import tqdm_range
 from utils.np_op import activate_k_2D
 
 from tfops.transform_op import apply_tf_op, pairwise_distance_euclid_efficient, get_recall_at_1_efficient
@@ -18,7 +16,6 @@ from tfops.lr_op import DECAY_DICT, DECAY_PARAMS_DICT
 from tfops.dist import npairs_loss, triplet_semihard_loss, pairwise_distance_euclid
 from tfops.nets import conv1_32
 
-from tqdm import tqdm
 import tensorflow as tf
 slim = tf.contrib.slim
 
@@ -49,10 +46,10 @@ class Model(ModelPlugin):
         self.conv_net = conv1_32
         
         if self.args.ltype == 'npair':
-            self.anc_last = tf.nn.relu(self.conv_net(self.anc_img, is_training=self.istrain, reuse=False))
-            self.pos_last = tf.nn.relu(self.conv_net(self.pos_img, is_training=self.istrain, reuse=True))
+            self.anc_last = tf.nn.relu(self.conv_net(self.anc_img, is_training=self.istrain, reuse=False)[0])
+            self.pos_last = tf.nn.relu(self.conv_net(self.pos_img, is_training=self.istrain, reuse=True)[0])
         else:#triplet
-            self.last = tf.nn.relu(self.conv_net(self.img, is_training=self.istrain, reuse=False))
+            self.last = tf.nn.relu(self.conv_net(self.img, is_training=self.istrain, reuse=False)[0])
 
         with slim.arg_scope([slim.fully_connected], activation_fn=None, weights_regularizer=slim.l2_regularizer(0.0005), biases_initializer=tf.zeros_initializer()):
             if self.args.ltype == 'npair':
@@ -143,10 +140,10 @@ class Model(ModelPlugin):
         self.save(0, save_dir)
         self.logger.info("Initial val p@1 = {}".format(val_p1))
 
-        for epoch_ in tqdm_range(epoch):
+        for epoch_ in range(epoch):
             train_epoch_loss = 0
-            for _ in tqdm_range(self.nbatch_train):
-                batch_loss = self.run_batch_hash()
+            for _ in range(self.nbatch_train):
+                batch_loss = self.run_batch()
                 train_epoch_loss += batch_loss	
             train_epoch_loss /= self.nbatch_train
 
