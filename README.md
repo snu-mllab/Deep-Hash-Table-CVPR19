@@ -1,6 +1,6 @@
 # End-to-End Efficient Representation Learning via Cascading Combinatorial Optimization
 This repository has the source code for the paper "End-to-End Efficient Representation Learning via Cascading Combinatorial Optimization"(CVPR19).
-<img src="https://github.com/maestrojeong/Deep-Hash-Table-CVPR19/blob/master/cifarhashtree.pdf" width="400">
+<img src="https://github.com/maestrojeong/Deep-Hash-Table-CVPR19/blob/master/cifarhashtree.png" width="400">
 
 ## Citing this work
 ```
